@@ -6,11 +6,19 @@ Retrieves environment variables using the `.env` file in the root of your projec
 
 ```clojure
 (require '[dotty.core :refer [env]])
+
 (env "PATH")
+;=> "/bin:/usr/bin:/usr/local/bin"
+```
+
+Given your project's `.env` file contains:
+```
+MY_SECRET_KEY=foo1234
 ```
 
 ```clojure
 (env "MY_SECRET_KEY")
+;=> "foo1234"
 ```
 
 ## License
