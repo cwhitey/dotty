@@ -38,4 +38,3 @@
   "Return all env vars or get by name."
   ([] env-vars)
   ([var-name] (get env-vars var-name)))
-(class (System/getenv))
