@@ -1,32 +1,17 @@
 # dotty
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Retrieves environment variables using the `.env` file in the root of your project first.
 
 ## Usage
 
-FIXME: explanation
+```clojure
+(require '[dotty.core :refer [env]])
+(env "PATH")
+```
 
-    $ java -jar dotty-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+```clojure
+(env "MY_SECRET_KEY")
+```
 
 ## License
 
