@@ -1,7 +1,6 @@
 (ns dotty.core
   (:require [clojure.string :as s]
-            [clojure.java.io :as io])
-  (:gen-class))
+            [clojure.java.io :as io]))
 
 (defn comment? [val]
   (s/starts-with? val "#"))
