@@ -2,6 +2,7 @@
 
 Retrieves environment variables, prioritizing those defined in `{project_root}/.env` file.
  - Ignores single-line comments (using `#`)
+ - Handles empty lines gracefully
  - Preserves quotes in env values
 
 ## Usage
