@@ -3,7 +3,7 @@
 Retrieves environment variables, prioritizing those defined in `{project_root}/.env` file.
  - Ignores single-line comments (using `#`)
  - Handles empty lines gracefully
- - Preserves quotes in env values
+ - Preserves double-quotes and newline characters in env values
 
 Add this to your `project.clj`
 [![Clojars Project](https://img.shields.io/clojars/v/cwhitey/dotty.svg)](https://clojars.org/cwhitey/dotty)
