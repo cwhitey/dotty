@@ -1,11 +1,11 @@
+[![Clojars Project](https://img.shields.io/clojars/v/cwhitey/dotty.svg)](https://clojars.org/cwhitey/dotty)
+
 # dotty
 
 Retrieves environment variables, prioritizing those defined in `{project_root}/.env` file.
  - Ignores single-line comments (using `#`)
  - Handles empty lines gracefully
  - Preserves double-quotes and newline characters in env values
-
-[![Clojars Project](https://img.shields.io/clojars/v/cwhitey/dotty.svg)](https://clojars.org/cwhitey/dotty)
 
 ## Usage
 
