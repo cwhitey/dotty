@@ -34,6 +34,6 @@
                      (decode-vars (read-env-file ".env"))))
 
 (defn env
-  "Return all env vars or get by name."
+  "Retrieve env var by name"
   ([] env-vars)
   ([var-name] (get env-vars var-name)))
