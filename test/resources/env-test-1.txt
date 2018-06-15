@@ -1,7 +1,7 @@
 USER=cwhitey
 # this is a comment
 APP_ENV=development
-INVALID_VAR=
+VALID_VAR=
 COUNT=8
 =invalid_var
 QUOTE="a very famous quote"

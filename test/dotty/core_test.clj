@@ -14,6 +14,12 @@
     (is (= (decode-var "TEST_ME=\"my quote\"")
            {"TEST_ME" "\"my quote\""}))
 
+    (is (= (decode-var "TEST_ME='http://something.org'")
+           {"TEST_ME" "http://something.org"}))
+
+    (is (= (decode-var "TEST_ME=")
+           {"TEST_ME" ""}))
+
     (is (= (decode-var "TEST_ME?value") nil))
     (is (= (decode-var "") nil)))
 
@@ -26,5 +32,6 @@
       (is (= (decode-vars vars-str)
              {"USER" "cwhitey"
               "APP_ENV" "development"
+              "VALID_VAR" ""
               "COUNT" "8"
               "QUOTE" "\"a very famous quote\""})))))

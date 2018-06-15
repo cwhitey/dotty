@@ -5,13 +5,22 @@
 (defn comment? [val]
   (s/starts-with? val "#"))
 
+(defn has-single-quotes? [s]
+  (and (s/starts-with? s "'")
+       (s/ends-with? s "'")))
+
+(defn strip-single-quotes [s]
+  (if (has-single-quotes? s)
+    (subs s 1 (dec (count s)))
+   f s))
+
 (defn decode-var
   "Decode a single environment var into hash-map. Return `nil` if invalid."
   [var-str]
-  (let [dec-var (s/split (s/trim var-str) #"=" 2)]
-    (when (and (= (count dec-var) 2)
-               (every? not-empty dec-var))
-      (apply hash-map dec-var))))
+  (let [[k v] (s/split (s/trim var-str) #"=" 2)]
+    (when (and (not-any? nil? [k v])
+               (not-empty k))
+      {k (strip-single-quotes v)})))
 
 (defn decode-vars
   "Decode env vars by line, stripping out comments."
