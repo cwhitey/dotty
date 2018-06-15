@@ -12,7 +12,7 @@
 (defn strip-single-quotes [s]
   (if (has-single-quotes? s)
     (subs s 1 (dec (count s)))
-   f s))
+    s))
 
 (defn decode-var
   "Decode a single environment var into hash-map. Return `nil` if invalid."
