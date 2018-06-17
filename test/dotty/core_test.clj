@@ -4,24 +4,30 @@
             [clojure.java.io :as io]))
 
 (deftest decoding-env-vars
-  (testing "Decode a single env var"
-    (is (= (decode-var "TEST_ME=http://something.org")
-           {"TEST_ME" "http://something.org"}))
+  (testing "Honour .env format rules"
+    (testing "Decode a URL format"
+      (is (= (decode-var "TEST_ME=http://something.org")
+             {"TEST_ME" "http://something.org"})))
 
-    (is (= (decode-var "TEST_ME=http://something.org?param=foo")
-           {"TEST_ME" "http://something.org?param=foo"}))
+    (testing "Subsequent `=` are part of env var"
+      (is (= (decode-var "TEST_ME=http://something.org?param=foo")
+             {"TEST_ME" "http://something.org?param=foo"})))
 
-    (is (= (decode-var "TEST_ME=\"my quote\"")
-           {"TEST_ME" "\"my quote\""}))
+    (testing "Non-existant value yields empty string"
+      (is (= (decode-var "TEST_ME=")
+             {"TEST_ME" ""})))
+    (testing "Preserve double quotes"
+      (is (= (decode-var "TEST_ME=\"my quote\"")
+             {"TEST_ME" "\"my quote\""})))
 
-    (is (= (decode-var "TEST_ME='http://something.org'")
-           {"TEST_ME" "http://something.org"}))
+    (testing "Strip single quotes"
+      (is (= (decode-var "TEST_ME='http://something.org'")
+             {"TEST_ME" "http://something.org"})))
 
-    (is (= (decode-var "TEST_ME=")
-           {"TEST_ME" ""}))
-
-    (is (= (decode-var "TEST_ME?value") nil))
-    (is (= (decode-var "") nil)))
+    (testing "Return nil for invalid formats"
+      (is (= (decode-var "=some value") nil))
+      (is (= (decode-var "TEST_ME?value") nil))
+      (is (= (decode-var "") nil))))
 
   (testing "Read env file from root of project"
     (is (pos-int? (count (read-env-file ".env.test"))))
