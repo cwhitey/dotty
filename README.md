@@ -2,12 +2,12 @@
 
 # dotty
 
-Retrieves environment variables, prioritizing those defined in `{project_root}/.env` file.
+Retrieves environment variables, prioritizing those defined in `{project_root}/.env`.
  - Ignores single-line comments (using `#`)
  - Handles empty lines gracefully
  - Preserves double-quotes and newline characters in env values
 
-Aims to eventually have rules-parity with the node.js [dotenv](https://github.com/motdotla/dotenv#rules) library.
+Aims to have rules-parity with [dotenv](https://github.com/motdotla/dotenv#rules) written for node.js.
 
 ## Usage
 
