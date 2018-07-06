@@ -17,7 +17,7 @@
     (strip-ends s)
     s))
 
-(defn decode-vars
+(defn decode-var
   "Decode a single environment var into hash-map.
   Return `nil` if invalid."
   [var-str]
