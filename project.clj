@@ -1,4 +1,4 @@
-(defproject cwhitey/dotty "0.2.1"
+(defproject cwhitey/dotty "0.2.2"
   :description "Retrieves environment variables using your .env file"
   :url "https://github.com/cwhitey/dotty"
   :license {:name "Eclipse Public License"
