@@ -40,7 +40,7 @@
   [file-name]
   (if (.exists (io/as-file file-name))
     (slurp file-name)
-    (do (println "Dotty: no .env file found.")
+    (do (println "Dotty: file not found: " file-name)
         "")))
 
 (defn system-env []
