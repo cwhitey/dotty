@@ -43,12 +43,19 @@
     (do (println "Dotty: no .env file found.")
         "")))
 
-(def system-env (into {} (System/getenv)))
+(defn system-env []
+  (into {} (System/getenv)))
 
-(def env-vars (merge system-env
-                     (decode-vars (read-env-file ".env"))))
+(defn load-env []
+  (merge (system-env)
+         (decode-vars (read-env-file ".env"))))
+
+(def ^:dynamic env-vars (load-env))
 
 (defn env
   "Retrieve env var by name"
   ([] env-vars)
   ([var-name] (get env-vars var-name)))
+
+(defn reload-env-vars []
+  (set! env-vars (load-env)))
