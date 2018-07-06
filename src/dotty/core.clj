@@ -35,7 +35,9 @@
              (map decode-var)
              (remove nil?))))
 
-(defn read-env-file [file-name]
+(defn read-env-file
+  "Read and parse env file e.g \".env\""
+  [file-name]
   (if (.exists (io/as-file file-name))
     (slurp file-name)
     (do (println "Dotty: no .env file found.")
