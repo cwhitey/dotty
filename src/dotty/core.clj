@@ -58,4 +58,4 @@
   ([var-name] (get env-vars var-name)))
 
 (defn reload-env-vars []
-  (set! env-vars (load-env)))
+  (alter-var-root #'env-vars (constantly (load-env))))
