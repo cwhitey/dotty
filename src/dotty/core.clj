@@ -38,17 +38,17 @@
 (defn read-env-file
   "Read and parse env file e.g \".env\""
   [file-name]
-  (if (.exists (io/as-file file-name))
-    (slurp file-name)
-    (do (println "Dotty: file not found: " file-name)
-        "")))
+  (when (.exists (io/as-file file-name))
+    (slurp file-name)))
 
 (defn system-env []
   (into {} (System/getenv)))
 
 (defn load-env []
-  (merge (system-env)
-         (decode-vars (read-env-file ".env"))))
+  (if-let [env-file-vars (read-env-file ".env")]
+    (merge (system-env)
+           (decode-vars env-file-vars))
+    (system-env)))
 
 (def ^:dynamic env-vars (load-env))
 
